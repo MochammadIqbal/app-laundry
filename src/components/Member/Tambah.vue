@@ -38,11 +38,19 @@
                         data-toggle="buttons"
                       >
                         <label class="btn btn-secondary">
-                          <input type="radio" value="Laki-laki" v-model="member.jenis_kelamin" />
+                          <input
+                            type="radio"
+                            value="Laki-laki"
+                            v-model="member.jenis_kelamin"
+                          />
                           Laki-laki
                         </label>
                         <label class="btn btn-secondary">
-                          <input type="radio" value="Perempuan" v-model="member.jenis_kelamin" />
+                          <input
+                            type="radio"
+                            value="Perempuan"
+                            v-model="member.jenis_kelamin"
+                          />
                           Perempuan
                         </label>
                       </div>
@@ -75,15 +83,21 @@ export default {
   data() {
     return {
       member: {},
-    }
+    };
   },
   methods: {
     tambah() {
-      this.axios.post("http://localhost/lat_laundry/public/api/member", this.member, 
-                    { headers: {Authorization : `Bearer` + this.$store.state.token}})
+      this.axios
+        .post("http://localhost/lat_laundry/public/api/member", this.member, {
+          headers: { Authorization: `Bearer` + this.$store.state.token },
+        })
 
-        .then(() => {
+        .then((res) => {
+          if (res.data.success) {
+            // this.$router.push("/member");
+            this.$swal("Sukses", res.data.message, "success");
             this.$router.push("/member");
+          }
         })
         .catch((err) => console.log(err));
     },

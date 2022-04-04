@@ -13,32 +13,28 @@
                     Edit Data Paket
                   </h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body" >
                   <form @submit.prevent="edit">
                     <div class="form-group">
-                      <label>Jenis</label>
-                    <select class="form-control" v-model="ubah.jenis">
-                      <option value="Cuci kering">Cuci kering</option>
-                      <option value="Cuci setrika">Cuci setrika</option>
-                      <option value="Sprei kecil">Sprei kecil</option>
-                      <option value="Sprei besar">Sprei besar</option>
-                      <option value="Bed cover">Bed Cover</option>
-                    </select>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Harga</label>
-                      <textarea
+                      <label>Jenis Paket</label>
+                      <input
+                        type="text"
                         class="form-control"
-                        rows="3"
-                        v-model="ubah.harga"
+                        v-model="paket.jenis"
+                        readonly
                       />
                     </div>
-                    <div class="card-footer">
-                      <button class="btn btn-primary" type="submit">
-                        Simpan
-                      </button>
+                    <div class="form-group">
+                      <label>Harga (Rp) </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="paket.harga"
+                      />
                     </div>
+                    <button type="submit" class="btn btn-success btn-block">
+                      Simpan
+                    </button>
                   </form>
                 </div>
               </div>
@@ -56,25 +52,24 @@ export default {
   data() {
     return {
       paket: {},
-      ubah: {},
+      // ubah: {},
     };
   },
   created() {
-    this.axios
-      .get(
-        `http://localhost/lat_laundry/public/api/paket/${this.$route.params.id}`,
-        { headers: { Authorization: `Bearer` + this.$store.state.token } }
-      )
-      .then((res) => {
-        this.paket = res.data;
-      });
-  },
+     this.axios.get(`http://localhost/lat_laundry/public/api/paket/${this.$route.params.id}`,
+         { headers: { Authorization: `Bearer` + this.$store.state.token } })
+       .then((res) => {
+         this.paket = res.data;
+       })
+       .catch(err => console.log(err))
+   },
+
   methods: {
     edit() {
       this.axios
         .put(
           `http://localhost/lat_laundry/public/api/paket/${this.$route.params.id}`,
-          this.ubah,
+          this.paket,
           { headers: { Authorization: `Bearer` + this.$store.state.token } }
         )
 

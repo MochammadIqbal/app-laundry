@@ -22,7 +22,18 @@
     <li v-if="isAdmin || isKasir" class="nav-item">
       <router-link to="/member" class="nav-link" href="index.html">
         <i class="fas fa-users"></i>
-        <span>Ingfo Member</span>
+        <span>Info Member</span>
+      </router-link>
+    </li>
+    <li v-if="isAdmin" class="nav-item">
+      <router-link class="nav-link" to="/user">
+        <i class="fas fa-user"></i>
+        <span>User</span>
+      </router-link> 
+      <li v-if="isAdmin" class="nav-item">
+      <router-link to="/outlet" class="nav-link" href="index.html">
+        <i class="fas fa-users"></i>
+        <span>Outlet</span>
       </router-link>
     </li>
     <li v-if="isAdmin" class="nav-item">

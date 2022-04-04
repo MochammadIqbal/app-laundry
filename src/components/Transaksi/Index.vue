@@ -69,7 +69,7 @@
 export default {
     data() {
         return {
-            transaksi : {}
+            transaksi : {},
         }
     },
     created() {

@@ -11,12 +11,14 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "moment": "^2.29.1",
-    "sweetalert2": "^11.4.4",
+    "sweetalert2": "^11.4.8",
     "vue": "^2.6.11",
     "vue-axios": "^3.4.0",
     "vue-html2pdf": "^1.8.0",
     "vue-moment": "^4.1.0",
     "vue-router": "^3.5.3",
+    "vue-sweetalert": "^0.1.18",
+    "vue-sweetalert2": "^5.0.2",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

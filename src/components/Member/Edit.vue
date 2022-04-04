@@ -113,13 +113,19 @@ export default {
     };
   },
   created() {
+    var data = JSON.parse(this.$store.state.datauser);
+    var role = data.role;
+    if (role == "owner") {
+      this.$swal("Error", "Anda tidak dapat mengakses halaman ini", "error");
+      this.$router.push("/");
+    }
     this.axios
       .get(
         `http://localhost/lat_laundry/public/api/member/${this.$route.params.id}`,
-        { headers: { Authorization: `Bearer` + this.$store.state.token } }
+        { headers: { Authorization: "Bearer" + this.$store.state.token } }
       )
       .then((res) => {
-        this.member = res.data;
+        this.ubah = res.data;
       });
   },
   methods: {

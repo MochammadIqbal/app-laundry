@@ -26,8 +26,19 @@ import EditTransaksi from '../components/Transaksi/Edit.vue'
 import DetailTransaksi from '../components/Transaksi/Detail.vue'
 import TambahDetail from '../components/Transaksi/TambahDetail.vue'
 
+//outlet
+import IndexOutlet from '../components/Outlet/Index.vue'
+import TambahOutlet from '../components/Outlet/Tambah.vue'
+import EditOutlet from '../components/Outlet/Edit.vue'
+
 //Report
 import Report from '../components/Report/Index.vue'
+
+//User
+import IndexUser from '../components/User/Index.vue'
+import TambahUser from '../components/User/Tambah.vue'
+import EditUser from '../components/User/Edit.vue'
+
 
 
 
@@ -158,6 +169,31 @@ const routes = [
             requiresAuth: true
         }
     },
+    //Outlet
+    {
+        path: '/outlet',
+        name: 'indexoutlet',
+        component: IndexOutlet,
+        meta : {
+          requiresAuth: true
+        }
+      },
+      {
+        path: '/outlet/tambah',
+        name: 'tambahoutlet',
+        component: TambahOutlet,
+        meta : {
+          requiresAuth: true
+        }
+      },
+      {
+        path: '/outlet/edit/:id',
+        name: 'editoutlet',
+        component: EditOutlet,
+        meta : {
+          requiresAuth: true
+        }
+      },
     {
         path: '/report',
         name: 'report',
@@ -166,7 +202,31 @@ const routes = [
           requiresAuth: true
         }
       },
-
+    //User
+    {
+        path: '/user',
+        name: 'indexuser',
+        component: IndexUser,
+        meta : {
+          requiresAuth : true
+        }
+      },
+      {
+        path: '/user/tambah',
+        name: 'tambahuser',
+        component: TambahUser,
+        meta : {
+          requiresAuth : true
+        }
+      },
+      {
+        path: '/user/edit/:id',
+        name: 'edituser',
+        component: EditUser,
+        meta: {
+            requiresAuth: true
+        }
+    },
 ]
 
 const router = new VueRouter({

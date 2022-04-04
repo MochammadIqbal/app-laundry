@@ -96,15 +96,42 @@ export default {
   },
   methods: {
     hapus(id_paket) {
-      this.axios
-        .delete(`http://localhost/lat_laundry/public/api/paket/${id_paket}`, {
-          headers: { Authorization: "Bearer" + this.$store.state.token },
-        })
-        .then(() => {
-          let i = this.paket.map((item) => item.id_paket).indexOf(id_paket);
-          this.paket.splice(i, 1);
-        });
-    },
+        this.$swal({
+             title: "Hapus Data Paket",
+               text: "Apakah anda yakin menghapus data paket ini?",
+               icon: 'warning',
+               showDenyButton: true,
+               //showCancelButton: "false",
+               confirmButtonText: "Ya",
+               denyButtonText: "Tidak",
+
+             }).then((result) => {
+               console.log(result)
+               if(result.isConfirmed){
+                 this.axios
+                        .delete(`http://localhost/lat_laundry/public/api/paket/${id_paket}`, {
+                        headers: { Authorization: "Bearer " + this.$store.state.token },
+                        })
+                        .then((res) => {
+                        if(res.data.success) {
+                        this.$swal("Sukses", res.data.message, "success")
+                        let i = this.paket.map((item) => item.id_paket).indexOf(id_paket);
+                        this.paket.splice(i, 1);
+                        this.getData()
+                        
+                        // this.$swal(res.data.message)
+                        }
+                    })
+               } else {
+                   this.$swal({
+                       title: "Batal",
+                       text : 'Data paket tidak jadi dihapus',
+                       icon: 'error',
+                       confirmButtonText: "OK"
+                   })
+               }
+           })
+        },
   },
 };
 </script>

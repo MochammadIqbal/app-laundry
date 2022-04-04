@@ -225,7 +225,7 @@
                     :disabled="disableBayar"
                     type="button"
                     class="btn btn-success mr-3"
-                    @click="bayar"
+                    @click="bayar(id_transaksi)"
                   >
                     Bayar
                   </button>
@@ -321,9 +321,9 @@ export default {
   methods: {
     ubahStatus() {
       if (this.transaksi.status == "baru") {
-        this.transaksi.status == "proses"
+        this.transaksi.status = "proses"
       } else {
-        this.transaksi.status == "selesai"
+        this.transaksi.status = "selesai"
       }
 
       this.axios
@@ -333,7 +333,7 @@ export default {
           { headers: { Authorization: `Bearer` + this.$store.state.token } }
         )
         .then(() => {
-          this.$router.go(1);
+          this.$router.go();
         })
         .catch((err) => console.log(err));
     },
@@ -345,7 +345,7 @@ export default {
           { headers: { Authorization: `Bearer` + this.$store.state.token } }
         )
         .then(() => {
-          this.$router.go(1);
+          this.$router.go();
         })
         .catch((err) => console.log(err));
     },

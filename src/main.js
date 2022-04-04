@@ -6,11 +6,15 @@ import store from './store'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
 import VueHtml2pdf from 'vue-html2pdf'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
 Vue.use(require('vue-moment'))
 Vue.use(VueHtml2pdf)
+Vue.use(VueSweetalert2)
+
 
 Vue.component('navbar-component', require('./components/Template/Navbar.vue').default);
 Vue.component('sidebar-component',require('./components/Template/Sidebar.vue').default);

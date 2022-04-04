@@ -62,8 +62,11 @@ export default {
           headers: { Authorization: `Bearer` + this.$store.state.token },
         })
 
-        .then(() => {
-          this.$router.push("/paket");
+        .then((res) => {
+          if (res.data.success) {
+            this.$swal("Sukses", res.data.message, "success");
+            this.$router.push("/paket");
+          }
         })
         .catch((err) => console.log(err));
     },

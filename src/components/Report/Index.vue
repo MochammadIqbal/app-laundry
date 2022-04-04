@@ -71,8 +71,14 @@
                               <td>{{ index + 1 }}</td>
                               <td>{{ t.nama }}</td>
                               <td>{{ t.tgl_order | moment("DD/MM/YYYY") }}</td>
-                              <td>{{ t.tgl_bayar | moment("DD/MM/YYYY") }}</td>
-                              <td>Rp {{ t.subtotal }}</td>
+                              <td v-if="t.tgl_bayar === null">-</td>
+                                      <td v-else>
+                                        {{ t.tgl_bayar | moment("DD/MM/YYYY") }}
+                                      </td>
+                              <td v-if="t.total === null">Rp.0</td>
+                                      <td v-else>
+                                        {{ t.total}}
+                                      </td>
                             </tr>
                           </tbody>
                         </table>
@@ -131,6 +137,7 @@ button:active{
 }
 </style>
 <script>
+
 export default {
 data() {
   return{
@@ -151,9 +158,10 @@ methods :{
     })
     .catch(err => console.log(err ))
   },
-            generateReport() {
-            this.$refs.html2Pdf.generatePdf()
-        }
+  generateReport() {
+
+      this.$refs.html2pdf.generatePdf()
+  }
 },
 }
 </script>
